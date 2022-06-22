@@ -1,6 +1,9 @@
-const mario = document.querySelector('.mario');
-const pipe = document.querySelector('.pipe');
+const mario = document.getElementById('mario');
+const pipe = document.getElementById('pipe');
 const back = document.getElementById('back');
+const scoreNumber = document.getElementById('number');
+let flgScored = false;
+let scored = 0;
 
 const jump = () => {
     mario.classList.add('jump');
@@ -36,5 +39,11 @@ const loop = setInterval(() => {
         setTimeout(over, 200);
 
         window.clearInterval(loop);
+    } else if (flgScored && pipePosition < 30) {
+        flgScored = false;
+        scored = scored + 1;
+        scoreNumber.textContent = scored;
+    } else if (pipePosition > 120) {
+        flgScored = true;
     }
 }, 10);
