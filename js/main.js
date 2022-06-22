@@ -12,6 +12,17 @@ const jump = () => {
 
 document.addEventListener('keydown', jump);
 
+const over = () => {
+    back.src = './images/gameover.jfif';
+    back.classList.remove('back');
+    back.classList.add('over');
+    back.style.cursor = 'pointer';
+
+    back.addEventListener('click', () => {
+        window.location.reload();
+    });
+}
+
 const loop = setInterval(() => {
     const pipePosition = pipe.offsetLeft;
     const marioPosition = +window.getComputedStyle(mario).bottom.replace('px', '');
@@ -22,11 +33,7 @@ const loop = setInterval(() => {
         mario.style.animation = 'none';
         mario.style.bottom = `${marioPosition}px`;
 
-        setTimeout(() => {
-            back.src = './images/gameover.jfif';
-            back.classList.remove('back');
-            back.classList.add('over');
-        }, 200);
+        setTimeout(over, 200);
 
         window.clearInterval(loop);
     }
